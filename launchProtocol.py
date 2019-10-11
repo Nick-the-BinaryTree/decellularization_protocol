@@ -7,6 +7,7 @@ from tkinter import *
 
 TITLE_FONT = font=('Helvetica', 14, 'bold')
 PADDING_Y = 12
+FILE_NAME = 'decellularization_protocol.ino';
 
 window=Tk()
 window.title("Decellularization Protocol")
@@ -69,19 +70,36 @@ crossProtocolInput2 = Entry(window)
 crossProtocolInput2.grid(row=22, column=1)
 
 
-def submit():
+def generate():
     def declare_var(name, value):
-        return 'const unsigned int ' + name + ' = ' + value + ';'
+        return 'const unsigned long ' + name + ' = ' + value + ';\n'
 
     new_file = open('decellularization_protocol.ino', 'w')
     new_file.write(declare_var('NUMBER_HYPERTONIC_BUFFER_WASHES', stepFourInput1.get()))
-    new_file.write('\n')
+    new_file.write(declare_var('HYPERTONIC_BUFFER_WASH_DURATION', stepFourInput2.get()))
+    new_file.write(declare_var('NUCLEASE_SOLUTION_TREATMENT_DURATION', stepFiveInput1.get()))
+    new_file.write(declare_var('HYPOTONIC_TRIS_HCL_WASH_DURATION', stepSixInput1.get()))
+    new_file.write(declare_var('TRITON_X_100_TREATMENT_DURATION', stepSevenInput1.get()))
+    new_file.write(declare_var('dH20_WASH_DURATION', stepEightInput1.get()))
+    new_file.write(declare_var('dH20_REWASH_INTERVAL', stepEightInput2.get()))
+    new_file.write(declare_var('PERACITIC_ACID_STERILIZATION_DURATION', stepNineInput1.get()))
+    new_file.write(declare_var('PBS_AND_dH20_WASH_DURATION', stepTenInput1.get()))
+    new_file.write(declare_var('NUMBER_PBS_AND_dH20_WASHES', stepTenInput2.get()))
+    new_file.write(declare_var('TIME_TO_FILL_CONTAINER', crossProtocolInput1.get()))
+    new_file.write(declare_var('TIME_TO_EMPTY_CONTAINER', crossProtocolInput2.get()))
 
-    template_file = open(os.path.join('resources', 'template_decellularization_protocol.ino'))
+    template_file = open(os.path.join('resources', 'template_'+FILE_NAME))
     new_file.write(template_file.read())
     new_file.close()
     template_file.close()
-    # print(subprocess.check_output(['ls']))
 
-Button(window, text="Submit", command=submit).grid(row=23, column=0, pady=PADDING_Y)
+
+def upload():
+    generate()
+    print(subprocess.check_output(['arduino', '--upload', FILE_NAME, '--port', '/dev/ttyUSB*']))
+
+
+Button(window, text="Generate Script", command=generate).grid(row=23, column=0, pady=PADDING_Y)
+Button(window, text="Run on Arduino", command=upload).grid(row=23, column=1, pady=PADDING_Y)
+
 window.mainloop()

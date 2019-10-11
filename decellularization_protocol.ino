@@ -1,4 +1,15 @@
-const unsigned int NUMBER_HYPERTONIC_BUFFER_WASHES = dxvxdv;
+const unsigned long NUMBER_HYPERTONIC_BUFFER_WASHES = ;
+const unsigned long HYPERTONIC_BUFFER_WASH_DURATION = ;
+const unsigned long NUCLEASE_SOLUTION_TREATMENT_DURATION = ;
+const unsigned long HYPOTONIC_TRIS_HCL_WASH_DURATION = ;
+const unsigned long TRITON_X_100_TREATMENT_DURATION = ;
+const unsigned long dH20_WASH_DURATION = ;
+const unsigned long dH20_REWASH_INTERVAL = ;
+const unsigned long PERACITIC_ACID_STERILIZATION_DURATION = ;
+const unsigned long PBS_AND_dH20_WASH_DURATION = ;
+const unsigned long NUMBER_PBS_AND_dH20_WASHES = ;
+const unsigned long TIME_TO_FILL_CONTAINER = ;
+const unsigned long TIME_TO_EMPTY_CONTAINER = ;
 // ***********************************************************************************
 // DO NOT EDIT BELOW THIS POINT
 
