@@ -19,8 +19,8 @@ const unsigned long dH20_REWASH_INTERVAL = 1000*60*60*12;
 const unsigned long PERACITIC_ACID_STERILIZATION_DURATION = 1000*60*60*4;
  
 // Step ten
-const unsigned long PBS_AND_dH20_WASH_DURATION = 1000*60;
 const unsigned int NUMBER_PBS_AND_dH20_WASHES = 2;
+const unsigned long PBS_AND_dH20_WASH_DURATION = 1000*60;
  
 // Cross-protocol
 const unsigned long TIME_TO_FILL_CONTAINER = 1000*60*2;
