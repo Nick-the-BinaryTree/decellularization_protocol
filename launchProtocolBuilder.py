@@ -14,7 +14,7 @@ window=Tk()
 window.title("Decellularization Protocol")
 window.geometry('640x800')
 
-Label(window, text='Note: all times are in seconds (ex: 3 minutes is "180")').grid(row=0, column=0)
+Label(window, text='Note: times are in seconds and lengths are in centimeters.').grid(row=0, column=0)
 
 Label(window, text="Step Four", font=TITLE_FONT).grid(row=1, column=0, pady=PADDING_Y)
 Label(window, text="Number of hypertonic buffer washes:").grid(row=2, column=0)
@@ -63,11 +63,11 @@ stepTenInput2 = Entry(window, textvariable=StringVar(window, '60'))
 stepTenInput2.grid(row=19, column=1)
 
 Label(window, text="Cross-Protocol", font=TITLE_FONT).grid(row=20, column=0, pady=PADDING_Y)
-Label(window, text="Time to fill container:").grid(row=21, column=0)
+Label(window, text="Height to submerge tissue:").grid(row=21, column=0)
 crossProtocolInput1 = Entry(window, textvariable=StringVar(window, '120'))
 crossProtocolInput1.grid(row=21, column=1)
-Label(window, text="Time to empty container:").grid(row=22, column=0)
-crossProtocolInput2 = Entry(window, textvariable=StringVar(window, '180'))
+Label(window, text="Height of container:").grid(row=22, column=0)
+crossProtocolInput2 = Entry(window, textvariable=StringVar(window, '120'))
 crossProtocolInput2.grid(row=22, column=1)
 
 
@@ -86,8 +86,8 @@ def generate():
     new_file.write(declare_var('PERACITIC_ACID_STERILIZATION_DURATION', stepNineInput1.get()+MILLISECOND_CONVERSION))
     new_file.write(declare_var('NUMBER_PBS_AND_dH20_WASHES', stepTenInput1.get()))
     new_file.write(declare_var('PBS_AND_dH20_WASH_DURATION', stepTenInput2.get()+MILLISECOND_CONVERSION))
-    new_file.write(declare_var('TIME_TO_FILL_CONTAINER', crossProtocolInput1.get()+MILLISECOND_CONVERSION))
-    new_file.write(declare_var('TIME_TO_EMPTY_CONTAINER', crossProtocolInput2.get()+MILLISECOND_CONVERSION))
+    new_file.write(declare_var('HEIGHT_TO_SUBMERGE_TISSUE', crossProtocolInput1.get()))
+    new_file.write(declare_var('CONTAINER_HEIGHT', crossProtocolInput2.get()))
 
     template_file = open(os.path.join('resources', 'template_'+FILE_NAME))
     new_file.write(template_file.read())
